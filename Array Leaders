@@ -1,0 +1,34 @@
+import java.util.*;
+
+public class LeadersInArray {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        
+        List<Integer> leaders = new ArrayList<>();
+        
+        int maxFromRight = arr[n - 1];  // last element is always a leader
+        leaders.add(maxFromRight);
+        
+        // Traverse from right to left
+        for (int i = n - 2; i >= 0; i--) {
+            if (arr[i] >= maxFromRight) {
+                leaders.add(arr[i]);
+                maxFromRight = arr[i];
+            }
+        }
+        
+        // Leaders collected in reverse order, reverse them
+        Collections.reverse(leaders);
+        
+        // Print result
+        for (int leader : leaders) {
+            System.out.print(leader + " ");
+        }
+    }
+}
